@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const orderRoutes = require('./routes/orderRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 const swaggerSpecs = require('./config/swagger');
+const { apiRateLimiter, readOnlyRateLimiter, createOrderRateLimiter } = require('./middleware/rateLimiter');
 const logger = require('./utils/logger');
 const inventoryService = require('./services/inventoryService');
 const paymentService = require('./services/paymentService');
@@ -27,6 +29,9 @@ class App {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       next();
     });
+
+    // Apply global rate limiting
+    this.app.use(apiRateLimiter);
   }
 
   setupRoutes() {
@@ -37,8 +42,9 @@ class App {
       customSiteTitle: 'Saga Pattern API Documentation'
     }));
 
-    // API Routes
+    // API Routes with rate limiting
     this.app.use('/api/orders', orderRoutes);
+    this.app.use('/api/events', readOnlyRateLimiter, eventRoutes);
     
     /**
      * @swagger
