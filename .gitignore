@@ -49,3 +49,7 @@ pnpm-lock.yaml
 # MongoDB
 data/
 *.db
+
+#logs
+combined.log
+error.log
