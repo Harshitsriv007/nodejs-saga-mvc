@@ -1,6 +1,7 @@
 const App = require('../src/app');
 const Order = require('../src/models/Order');
 const SagaState = require('../src/models/SagaState');
+const mongoose = require('mongoose');
 
 describe('Saga Pattern Tests', () => {
   let app;
