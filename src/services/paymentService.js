@@ -3,20 +3,22 @@ const logger = require('../utils/logger');
 
 class PaymentService {
   constructor() {
-    this.baseURL = process.env.PAYMENT_SERVICE_URL || 'http://localhost:3002';
+    this.baseURL = process.env.PAYMENT_SERVICE_URL || 'http://localhost:3003';
   }
 
   async processPayment(orderId, paymentData) {
     try {
       const response = await axios.post(`${this.baseURL}/api/payments/process`, {
         orderId,
-        ...paymentData
+        totalAmount: paymentData.totalAmount,
+        paymentMethod: paymentData.paymentMethod,
+        userId: paymentData.userId
       });
 
       logger.info(`Payment processed for order ${orderId}`);
       return response.data;
     } catch (error) {
-      logger.error(`Payment processing failed for order ${orderId}:`, error);
+      logger.error(`Payment processing failed for order ${orderId}:`, error.message);
       throw new Error(`Payment processing failed: ${error.message}`);
     }
   }

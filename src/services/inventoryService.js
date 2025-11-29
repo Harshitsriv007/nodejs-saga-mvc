@@ -3,20 +3,21 @@ const logger = require('../utils/logger');
 
 class InventoryService {
   constructor() {
-    this.baseURL = process.env.INVENTORY_SERVICE_URL || 'http://localhost:3001';
+    this.baseURL = process.env.INVENTORY_SERVICE_URL || 'http://localhost:3002';
   }
 
   async reserveInventory(orderId, inventoryData) {
     try {
       const response = await axios.post(`${this.baseURL}/api/inventory/reserve`, {
         orderId,
-        ...inventoryData
+        productId: inventoryData.productId,
+        quantity: inventoryData.quantity
       });
 
       logger.info(`Inventory reserved for order ${orderId}`);
       return response.data;
     } catch (error) {
-      logger.error(`Inventory reservation failed for order ${orderId}:`, error);
+      logger.error(`Inventory reservation failed for order ${orderId}:`, error.message);
       throw new Error(`Inventory reservation failed: ${error.message}`);
     }
   }

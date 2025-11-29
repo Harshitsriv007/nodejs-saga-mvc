@@ -54,15 +54,23 @@ class SagaOrchestrator {
   async executeSaga(sagaId) {
     try {
       const sagaState = await SagaState.findOne({ sagaId });
+      const order = await Order.findOne({ orderId: sagaState.orderId });
       
       // Step 1: Reserve Inventory
       await this.executeStep(sagaState, 'RESERVE_INVENTORY', () =>
-        inventoryService.reserveInventory(sagaState.orderId, sagaState.steps[1].data)
+        inventoryService.reserveInventory(sagaState.orderId, {
+          productId: order.productId,
+          quantity: order.quantity
+        })
       );
 
       // Step 2: Process Payment
       await this.executeStep(sagaState, 'PROCESS_PAYMENT', () =>
-        paymentService.processPayment(sagaState.orderId, sagaState.steps[2].data)
+        paymentService.processPayment(sagaState.orderId, {
+          totalAmount: order.totalAmount,
+          paymentMethod: order.paymentMethod || 'credit_card',
+          userId: order.userId
+        })
       );
 
       // Step 3: Send Notification
