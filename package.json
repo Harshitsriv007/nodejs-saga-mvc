@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-saga-mvc",
+  "version": "1.0.0",
+  "description": "Node.js MVC with Saga Pattern",
+  "type": "commonjs",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0",
+    "joi": "^17.9.2",
+    "axios": "^1.5.0",
+    "redis": "^4.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.6.2"
+  }
+}
