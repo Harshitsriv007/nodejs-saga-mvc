@@ -29,6 +29,7 @@ This project demonstrates a distributed transaction management system using the 
 
 ## 🚀 Features
 
+### Core Features
 - ✅ **Saga Pattern Implementation** - Orchestrated saga with automatic compensation
 - ✅ **Microservices Architecture** - Independent, scalable services
 - ✅ **MongoDB Integration** - Persistent storage for orders and saga states
@@ -37,6 +38,15 @@ This project demonstrates a distributed transaction management system using the 
 - ✅ **RESTful APIs** - Clean, well-documented endpoints
 - ✅ **Error Handling** - Robust error handling and validation
 - ✅ **Health Checks** - Monitor service availability
+
+### Advanced Features 🆕
+- ✅ **Retry Logic** - Automatic retries with exponential backoff for transient failures
+- ✅ **Circuit Breaker** - Prevent cascade failures with Opossum circuit breaker
+- ✅ **Distributed Tracing** - End-to-end request tracing with OpenTelemetry & Jaeger
+- ✅ **API Documentation** - Interactive Swagger/OpenAPI documentation
+- ✅ **Metrics & Monitoring** - Circuit breaker statistics and health metrics
+
+📖 **[View Advanced Features Documentation](ADVANCED_FEATURES.md)**
 
 ## 📦 Services
 
@@ -48,7 +58,9 @@ Coordinates the entire order processing workflow.
 - `GET /api/orders/:orderId` - Get order details
 - `GET /api/orders/saga/:sagaId` - Get saga execution status
 - `GET /health` - Health check
-- `GET /` - API documentation
+- `GET /api-docs` - Interactive API documentation (Swagger UI)
+- `GET /metrics/circuit-breakers` - Circuit breaker statistics
+- `GET /` - API information
 
 ### 2. Inventory Service (Port 3002)
 Manages product inventory and reservations.
@@ -85,31 +97,56 @@ Sends notifications to users.
 
 ## 📥 Installation
 
-### 1. Clone the repository
+### Quick Setup (with Advanced Features)
+```bash
+# Run the automated setup script
+./setup-advanced-features.sh
+```
+
+This will:
+- Install all dependencies
+- Setup Jaeger for distributed tracing (if Docker is available)
+- Create .env configuration file
+- Verify MongoDB connection
+
+### Manual Installation
+
+#### 1. Clone the repository
 ```bash
 git clone <repository-url>
 cd nodejs-saga-mvc
 ```
 
-### 2. Install main service dependencies
+#### 2. Install main service dependencies
 ```bash
 npm install
 ```
 
-### 3. Install microservices dependencies
+#### 3. Install microservices dependencies
 ```bash
 cd microservices/inventory-service && npm install && cd ../..
 cd microservices/payment-service && npm install && cd ../..
 cd microservices/notification-service && npm install && cd ../..
 ```
 
-### 4. Ensure MongoDB is running
+#### 4. Ensure MongoDB is running
 ```bash
 # Check if MongoDB is running
 pgrep -x mongod
 
 # If not running, start MongoDB
 mongod --dbpath /path/to/data
+
+# Or use Docker
+docker-compose up -d mongodb
+```
+
+#### 5. (Optional) Setup Jaeger for Distributed Tracing
+```bash
+# Start Jaeger using Docker Compose
+docker-compose up -d jaeger
+
+# Access Jaeger UI at http://localhost:16686
 ```
 
 ## 🚀 Running the Application
@@ -154,6 +191,30 @@ npm run dev
 ### Run the automated test script:
 ```bash
 ./test-saga.sh
+```
+
+### Test Advanced Features
+
+**View API Documentation:**
+```bash
+open http://localhost:3001/api-docs
+```
+
+**Check Circuit Breaker Status:**
+```bash
+curl http://localhost:3001/metrics/circuit-breakers | jq .
+```
+
+**Enable Distributed Tracing:**
+```bash
+# Set in .env file
+ENABLE_TRACING=true
+
+# Restart services
+./start-all-services.sh
+
+# View traces in Jaeger UI
+open http://localhost:16686
 ```
 
 ### Manual API Testing
@@ -678,16 +739,24 @@ When a step fails, the saga automatically executes compensation actions in rever
 
 ## 🚀 Next Steps
 
+### Completed ✅
+1. ~~**Implement Retry Logic**~~ - Automatic retries with exponential backoff
+2. ~~**Add Distributed Tracing**~~ - OpenTelemetry with Jaeger integration
+3. ~~**Implement Circuit Breaker**~~ - Opossum circuit breaker pattern
+4. ~~**Add API Documentation**~~ - Interactive Swagger/OpenAPI docs
+5. ~~**Add Monitoring**~~ - Circuit breaker metrics and health checks
+
+### Roadmap 🚧
 1. **Add Authentication** - Implement JWT-based authentication
-2. **Add Authorization** - Role-based access control
-3. **Implement Retry Logic** - Automatic retries for transient failures
-4. **Add Distributed Tracing** - OpenTelemetry or Jaeger
-5. **Implement Circuit Breaker** - Prevent cascade failures
-6. **Add API Documentation** - Swagger/OpenAPI
-7. **Containerization** - Docker and Docker Compose
-8. **Kubernetes Deployment** - Production-ready orchestration
-9. **Add Monitoring** - Prometheus and Grafana
-10. **Implement Event Sourcing** - Complete audit trail
+2. **Add Authorization** - Role-based access control (RBAC)
+3. **Containerization** - Complete Docker setup for all services
+4. **Kubernetes Deployment** - Production-ready K8s manifests
+5. **Add Prometheus & Grafana** - Advanced monitoring dashboards
+6. **Implement Event Sourcing** - Complete audit trail
+7. **Add Rate Limiting** - Protect APIs from abuse
+8. **Unit & Integration Tests** - Comprehensive test coverage
+9. **CI/CD Pipeline** - Automated testing and deployment
+10. **GraphQL API** - Alternative API interface
 
 ## 🤝 Contributing
 
@@ -703,7 +772,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-- Your Name - Initial work
+- Harshit Srivastava - Initial work
 
 ## 🙏 Acknowledgments
 

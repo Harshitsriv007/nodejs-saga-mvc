@@ -235,3 +235,24 @@
 {"aggregateId":"2e490468-93d9-486d-9bd8-6508ae4d8aa9","aggregateType":"SAGA","eventId":"111a90ab-849d-4666-b9e8-e33aeacd7d80","level":"info","message":"Event stored: SAGA_COMPLETED","service":"saga-orchestrator","timestamp":"2025-11-29T22:24:14.289Z"}
 {"aggregateId":"ORD-1764455054212","aggregateType":"ORDER","eventId":"e2b6849a-e263-4cf1-b136-456a54bdcdba","level":"info","message":"Event stored: ORDER_COMPLETED","service":"saga-orchestrator","timestamp":"2025-11-29T22:24:14.292Z"}
 {"level":"info","message":"Saga 2e490468-93d9-486d-9bd8-6508ae4d8aa9 completed successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:24:14.292Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:37:49.922Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:37:49.985Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:37:55.596Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:37:55.620Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:00.070Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:00.092Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:05.337Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:05.362Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:16.242Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:38:16.264Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:08.906Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:09.061Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:16.783Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:16.880Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:24.169Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:24.580Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:28.698Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:28.755Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:33.139Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:33.218Z"}
+
