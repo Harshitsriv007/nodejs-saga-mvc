@@ -256,3 +256,21 @@
 {"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:33.139Z"}
 {"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:45:33.218Z"}
 
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","method":"GET","path":"/test","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.204Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","method":"GET","path":"/test","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.238Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","method":"GET","path":"/test","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.255Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","method":"GET","path":"/test","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.260Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.606Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:22.770Z"}
+{"level":"error","message":"Database connection failed:","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.002Z"}
+{"aggregateId":"ORD-1764455603053","aggregateType":"ORDER","eventId":"c22a6476-c10b-4d0c-8d2c-93e913a58de6","level":"info","message":"Event stored: ORDER_CREATED","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.071Z"}
+{"aggregateId":"41af2a03-431a-4d9b-880b-6b499b82ed31","aggregateType":"SAGA","eventId":"c8541aa8-faab-47f8-8cd6-bc74941ad4a9","level":"info","message":"Event stored: SAGA_STARTED","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.078Z"}
+{"level":"info","message":"Inventory reserved for order ORD-1764455603053","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.105Z"}
+{"level":"info","message":"Step RESERVE_INVENTORY completed for saga 41af2a03-431a-4d9b-880b-6b499b82ed31","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.113Z"}
+{"level":"info","message":"Payment processed for order ORD-1764455603053","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.122Z"}
+{"level":"info","message":"Step PROCESS_PAYMENT completed for saga 41af2a03-431a-4d9b-880b-6b499b82ed31","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.129Z"}
+{"level":"info","message":"Order confirmation sent for order ORD-1764455603053","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.139Z"}
+{"level":"info","message":"Step SEND_NOTIFICATION completed for saga 41af2a03-431a-4d9b-880b-6b499b82ed31","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.143Z"}
+{"aggregateId":"41af2a03-431a-4d9b-880b-6b499b82ed31","aggregateType":"SAGA","eventId":"5c253cf6-82b3-42ed-aae6-0be147c2a3e8","level":"info","message":"Event stored: SAGA_COMPLETED","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.153Z"}
+{"aggregateId":"ORD-1764455603053","aggregateType":"ORDER","eventId":"8d69650f-4b77-4177-9e53-dd06a42353fe","level":"info","message":"Event stored: ORDER_COMPLETED","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.158Z"}
+{"level":"info","message":"Saga 41af2a03-431a-4d9b-880b-6b499b82ed31 completed successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:33:23.159Z"}
