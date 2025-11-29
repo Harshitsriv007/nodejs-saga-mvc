@@ -16,7 +16,15 @@
     "winston": "^3.10.0",
     "joi": "^17.9.2",
     "axios": "^1.5.0",
-    "redis": "^4.6.7"
+    "redis": "^4.6.7",
+    "axios-retry": "^3.8.0",
+    "opossum": "^8.1.0",
+    "swagger-ui-express": "^5.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/sdk-node": "^0.45.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.39.4",
+    "@opentelemetry/exporter-jaeger": "^1.18.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",

@@ -1,3 +1,10 @@
+// Initialize tracing first (before any other imports)
+if (process.env.ENABLE_TRACING === 'true') {
+  const { initTracing } = require('./tracing');
+  initTracing('saga-orchestrator');
+  console.log('OpenTelemetry tracing initialized');
+}
+
 const App = require('./app');
 
 const app = new App();
