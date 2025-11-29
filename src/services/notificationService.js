@@ -3,7 +3,7 @@ const logger = require('../utils/logger');
 
 class NotificationService {
   constructor() {
-    this.baseURL = process.env.NOTIFICATION_SERVICE_URL || 'http://localhost:3003';
+    this.baseURL = process.env.NOTIFICATION_SERVICE_URL || 'http://localhost:3004';
   }
 
   async sendOrderConfirmation(orderId) {

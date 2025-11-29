@@ -12,7 +12,7 @@ const sagaStateSchema = new mongoose.Schema({
   },
   currentStep: {
     type: String,
-    enum: ['STARTED', 'INVENTORY_RESERVED', 'PAYMENT_PROCESSED', 'COMPLETED', 'COMPENSATING', 'FAILED'],
+    enum: ['STARTED', 'RESERVE_INVENTORY', 'PROCESS_PAYMENT', 'SEND_NOTIFICATION', 'COMPLETED', 'COMPENSATING', 'FAILED'],
     default: 'STARTED'
   },
   steps: [{
