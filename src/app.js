@@ -1,7 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
 const orderRoutes = require('./routes/orderRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+const swaggerSpecs = require('./config/swagger');
+const { apiRateLimiter, readOnlyRateLimiter, createOrderRateLimiter } = require('./middleware/rateLimiter');
 const logger = require('./utils/logger');
+const inventoryService = require('./services/inventoryService');
+const paymentService = require('./services/paymentService');
+const notificationService = require('./services/notificationService');
 
 class App {
   constructor() {
@@ -22,12 +29,37 @@ class App {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       next();
     });
+
+    // Apply global rate limiting
+    this.app.use(apiRateLimiter);
   }
 
   setupRoutes() {
+    // API Documentation
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, {
+      explorer: true,
+      customCss: '.swagger-ui .topbar { display: none }',
+      customSiteTitle: 'Saga Pattern API Documentation'
+    }));
+
+    // API Routes with rate limiting
     this.app.use('/api/orders', orderRoutes);
+    this.app.use('/api/events', readOnlyRateLimiter, eventRoutes);
     
-    // Health check with better response
+    /**
+     * @swagger
+     * /health:
+     *   get:
+     *     summary: Health check endpoint
+     *     tags: [Health]
+     *     responses:
+     *       200:
+     *         description: Service is healthy
+     *         content:
+     *           application/json:
+     *             schema:
+     *               $ref: '#/components/schemas/HealthCheck'
+     */
     this.app.get('/health', (req, res) => {
       res.status(200).json({ 
         status: 'OK', 
@@ -36,15 +68,41 @@ class App {
       });
     });
 
+    /**
+     * @swagger
+     * /metrics/circuit-breakers:
+     *   get:
+     *     summary: Get circuit breaker statistics
+     *     tags: [Monitoring]
+     *     responses:
+     *       200:
+     *         description: Circuit breaker statistics for all services
+     */
+    this.app.get('/metrics/circuit-breakers', (req, res) => {
+      try {
+        const stats = {
+          inventory: inventoryService.getCircuitBreakerStats(),
+          payment: paymentService.getCircuitBreakerStats(),
+          notification: notificationService.getCircuitBreakerStats()
+        };
+        res.json(stats);
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve circuit breaker stats' });
+      }
+    });
+
     // Root endpoint
     this.app.get('/', (req, res) => {
       res.status(200).json({
         message: 'Saga Pattern API is running',
+        documentation: '/api-docs',
         endpoints: {
           createOrder: 'POST /api/orders',
           getOrder: 'GET /api/orders/:orderId',
           getSagaStatus: 'GET /api/orders/saga/:sagaId',
-          health: 'GET /health'
+          health: 'GET /health',
+          metrics: 'GET /metrics/circuit-breakers',
+          apiDocs: 'GET /api-docs'
         },
         timestamp: new Date()
       });

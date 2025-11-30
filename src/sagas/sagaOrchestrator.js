@@ -4,6 +4,7 @@ const SagaState = require('../models/SagaState');
 const inventoryService = require('../services/inventoryService');
 const paymentService = require('../services/paymentService');
 const notificationService = require('../services/notificationService');
+const eventStore = require('../services/eventStore');
 const logger = require('../utils/logger');
 
 class SagaOrchestrator {
@@ -40,6 +41,26 @@ class SagaOrchestrator {
     try {
       await order.save();
       await sagaState.save();
+      
+      // Store ORDER_CREATED event
+      await eventStore.storeEvent({
+        eventType: 'ORDER_CREATED',
+        aggregateId: orderId,
+        aggregateType: 'ORDER',
+        payload: orderData,
+        userId: orderData.userId,
+        correlationId: sagaId
+      });
+
+      // Store SAGA_STARTED event
+      await eventStore.storeEvent({
+        eventType: 'SAGA_STARTED',
+        aggregateId: sagaId,
+        aggregateType: 'SAGA',
+        payload: { orderId, steps: sagaState.steps.map(s => s.name) },
+        userId: orderData.userId,
+        correlationId: sagaId
+      });
       
       // Start saga execution
       await this.executeSaga(sagaId);
@@ -88,6 +109,26 @@ class SagaOrchestrator {
         { orderId: sagaState.orderId },
         { status: 'COMPLETED' }
       );
+
+      // Store SAGA_COMPLETED event
+      await eventStore.storeEvent({
+        eventType: 'SAGA_COMPLETED',
+        aggregateId: sagaId,
+        aggregateType: 'SAGA',
+        payload: { orderId: sagaState.orderId, completedSteps: sagaState.steps },
+        userId: order.userId,
+        correlationId: sagaId
+      });
+
+      // Store ORDER_COMPLETED event
+      await eventStore.storeEvent({
+        eventType: 'ORDER_COMPLETED',
+        aggregateId: sagaState.orderId,
+        aggregateType: 'ORDER',
+        payload: { sagaId, status: 'COMPLETED' },
+        userId: order.userId,
+        correlationId: sagaId
+      });
 
       logger.info(`Saga ${sagaId} completed successfully`);
 
