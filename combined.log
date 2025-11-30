@@ -141,3 +141,16 @@
 {"level":"info","message":"Order confirmation sent for order ORD-1764450653719","service":"saga-orchestrator","timestamp":"2025-11-29T21:10:53.809Z"}
 {"level":"info","message":"Step SEND_NOTIFICATION completed for saga d695b770-44d0-4b3e-94ff-6ba636132fbb","service":"saga-orchestrator","timestamp":"2025-11-29T21:10:53.811Z"}
 {"level":"info","message":"Saga d695b770-44d0-4b3e-94ff-6ba636132fbb completed successfully","service":"saga-orchestrator","timestamp":"2025-11-29T21:10:53.816Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:40:21.896Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-29T22:40:21.961Z"}
+{"level":"error","message":"Database connection failed:","service":"saga-orchestrator","timestamp":"2025-11-30T16:40:00.955Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:41:21.293Z"}
+{"level":"error","message":"Database connection failed:","service":"saga-orchestrator","timestamp":"2025-11-30T16:41:26.299Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:47:27.800Z"}
+{"level":"error","message":"Database connection failed:","service":"saga-orchestrator","timestamp":"2025-11-30T16:47:32.804Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:16.499Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:16.517Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:46.552Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:46.579Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:52.537Z"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"saga-orchestrator","timestamp":"2025-11-30T16:49:52.559Z"}
